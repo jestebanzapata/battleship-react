@@ -1,7 +1,7 @@
-import { SET_GAME_STATE, SET_SHIP_DRAGGED, SET_SHIP_POSITION } from './types';
+import { SET_BOARD_INITIAL_STATE, SET_SHIP_DRAGGED, SET_SHIP_POSITION } from './types';
 
-export const setGameState = payload => ({
-    type: SET_GAME_STATE,
+export const setBoardInitialState = payload => ({
+    type: SET_BOARD_INITIAL_STATE,
     payload
 });
 

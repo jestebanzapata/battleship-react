@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Cell from './Cell';
+import Cell from './Cell/Cell.component';
 
 const StyledBoard = styled.div`
     position: absolute;

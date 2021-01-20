@@ -1,28 +1,40 @@
-const reducer = (state, action) => {
+import { SET_BOARD_INITIAL_STATE, SET_SHIP_DRAGGED, SET_SHIP_POSITION } from "../actions/types";
 
+const reducer = (state, action) => {
+    //[...action.payload]
     switch (action.type) {
-        case 'SET_GAME_STATE':
+        case SET_BOARD_INITIAL_STATE: {
+            const { user, boardState } = action.payload;
             return {
                 ...state,
-                gameState: [...action.payload]
+                gameState: { ...state.gameState, board: { ...state.gameState.board, [user]: boardState } }
             };
-        case 'SET_SHIP_DRAGGED':
+        }
+        case SET_SHIP_DRAGGED:
             console.log("action SET_SHIP_DRAGGED => ", action);
             return {
                 ...state,
                 shipDragged: {...action.payload}
             };
-        case 'SET_SHIP_POSITION':                   
-            const shipPosition  = action.payload;
+        case SET_SHIP_POSITION: {
+            console.log("action SET_SHIP_POSITION => ", action);
+            const { user, shipPosition } = action.payload;
             const newState = {
                 ...state,
-                gameState: state.gameState.map((cell, index) => {
-                    const cellModified = shipPosition.find(data => data.boardIndex == index);
-                    return  cellModified ? { ship: {...cellModified.ship}}: cell;
-                })
+                gameState: {
+                    ...state.gameState,
+                    board: {
+                        ...state.gameState.board,
+                        [user]: state.gameState.board[user].map((cell, index) => {
+                            const cellModified = shipPosition.find(data => data.boardIndex === index);
+                            return cellModified ? { ship: { ...cellModified.ship } } : cell;
+                        })
+                    }
+                },
             };
             console.log("NewState ==> ", newState);
             return newState;
+        }
         default:
             break;
     }
