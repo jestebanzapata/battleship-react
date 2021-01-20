@@ -1,4 +1,4 @@
-import { SET_BOARD_INITIAL_STATE, SET_SHIP_DRAGGED, SET_SHIP_POSITION } from "../actions/types";
+import { SET_BOARD_INITIAL_STATE, SET_SHIP_DRAGGED, SET_SHIP_POSITION, SHOOT_CELL } from "../actions/types";
 
 const reducer = (state, action) => {
     //[...action.payload]
@@ -11,13 +11,11 @@ const reducer = (state, action) => {
             };
         }
         case SET_SHIP_DRAGGED:
-            console.log("action SET_SHIP_DRAGGED => ", action);
             return {
                 ...state,
                 shipDragged: {...action.payload}
             };
         case SET_SHIP_POSITION: {
-            console.log("action SET_SHIP_POSITION => ", action);
             const { user, shipPosition } = action.payload;
             const newState = {
                 ...state,
@@ -32,7 +30,23 @@ const reducer = (state, action) => {
                     }
                 },
             };
-            console.log("NewState ==> ", newState);
+            return newState;
+        }
+        case SHOOT_CELL: {
+            const { user, index: boardIndex } = action.payload;
+            const newState = {
+                ...state,
+                gameState: {
+                    ...state.gameState,
+                    board: {
+                        ...state.gameState.board,
+                        [user]: state.gameState.board[user].map((cell, index) => {
+
+                            return boardIndex === index ? { ...cell, wasHit: true } : cell;
+                        })
+                    }
+                },
+            };
             return newState;
         }
         default:

@@ -13,6 +13,7 @@ import {
 } from './Board.style';
 import { Refresh } from '@styled-icons/heroicons-outline';
 import { gameStatus } from '../../constants/types';
+import { useCallback } from 'react';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -20,21 +21,21 @@ function Board(props) {
     const { user, loggedUser, board, gameState, shipDragged, generateAutoBoardHandler, addShipToBoardPositionHandler, setShipPosition} = props;
     const { config, status } = gameState;
     const { width } = config;
-    console.log("addShipToBoardPositionHandler => ", JSON.stringify(shipDragged));
 
-    const onDragOver = (event) => {
-        event.preventDefault();
-        // console.log("onDragOver => ", event);
+    // const onDragOver = (event) => {
+    //     event.preventDefault();
+    //     // console.log("onDragOver => ", event);
+    // }
 
-    }
+    const onDragOver = useCallback(event => event.preventDefault(), []);
 
-    const onDrop = (event, positionData) => {
+    const onDrop = useCallback((event, positionData) => {
         if (status !== gameStatus.SETTING){
             return;
         }
         const shipPosition = addShipToBoardPositionHandler(board, shipDragged, positionData);
         setShipPosition({ user, shipPosition});
-    }
+    }, [])
 
     return (
         <>
@@ -64,7 +65,7 @@ function Board(props) {
                     }
                 </StyledBoard>
                 {
-                    true && <StyledAutoButton onClick={() => generateAutoBoardHandler(user)}><Refresh /></StyledAutoButton>
+                    status === gameStatus.SETTING && <StyledAutoButton onClick={() => generateAutoBoardHandler(user)}><Refresh /></StyledAutoButton>
                 }
             </StyledBoardSubContainer>
         </>

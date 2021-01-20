@@ -37,6 +37,7 @@ function Boardcontainer(props) {
 
 
     }, EMPTY_BOARD);
+    console.log("board => ", JSON.stringify(boardState));
     setBoardInitialState({ user, boardState});
   }
 

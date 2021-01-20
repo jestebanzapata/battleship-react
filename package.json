@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-knobs": "^6.1.14",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.1",
+    "react-spring": "^8.0.27",
     "redux": "^4.0.5",
     "styled-components": "^5.2.1",
     "styled-icons": "^10.25.0",
@@ -47,6 +50,7 @@
     "@storybook/addon-links": "^6.1.14",
     "@storybook/node-logger": "^6.1.14",
     "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.1.14"
+    "@storybook/react": "^6.1.14",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
