@@ -16,7 +16,7 @@ export const StyledBoard = styled.div`
     width: calc((10* ${CELL_SIZE}vmin));
     grid-template-rows: repeat(${(props) => props.width}, ${CELL_SIZE}vmin);
     grid-template-columns: repeat(${(props) => props.width}, ${CELL_SIZE}vmin);
-    background-color: #FBFFFF;
+    background-color: #d7f5ff;
     border: 4px solid #5937CF;
     justify-content: center;
 `;

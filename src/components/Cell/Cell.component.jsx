@@ -18,43 +18,35 @@ function Cell(props) {
     const dispatch = useDispatch();
 
     const test = useSpring({
-
-        config: { duration: 1000 },
+        // loop: true,
+        reset: true,
         from: {
-            // boxShadow: '0 0 0 1px rgba(255,0,0, 0.2)',
+            boxShadow:
+                "0 0 0 0vmin rgba(66, 156, 234, 1), 0 0 0 1vmin rgba(66, 156, 234, 1), 0 0 0 2vmin rgba(66, 156, 234, 1), 0 0 0 4vmin rgba(66, 156, 234, 1)",
             opacity: 0
         },
         to: [
-                {
-                    boxShadow: '0 0 0 25px rgba(255,0,0, 0.2)',
-                    opacity: wasHit ? 1 : 0
-                },
-                {
-                    boxShadow: '0 0 0 15px rgba(255,0,0, 0.2)',
-                    opacity: wasHit ? 0.5 : 0
-                },
-                {
-                    boxShadow: '0 0 0 0px rgba(255,0,0, 0.2)',
-                    opacity: wasHit ? 1 : 0
-                }
-            ],
-        // to: async next => {
-        //     while (1) {
-        //         await next({
-        //             boxShadow: '0 0 0 25px rgba(255,0,0, 0.2)',
-        //             opacity: 1
-        //         })
-        //         await next({
-        //             boxShadow: '0 0 0 15px rgba(255,0,0, 0.2)',
-        //             opacity: 0.5
-        //         })
-        //         await next({
-        //             boxShadow: '0 0 0 5px rgba(255,0,0, 0.2)',
-        //             opacity: 0.3
-        //         })
-        //     }
-        // }
+            {
+                boxShadow:
+                    "0 0 0 1vmin rgba(66, 156, 234, 0), 0 0 0 2vmin rgba(66, 156, 234, 0), 0 0 0 3vmin rgba(66, 156, 234, 0), 0 0 0 5vmin rgba(66, 156, 234, 0)",
+                opacity: (wasHit ? 1 : 0)
+            }
+        ],
+        config: { duration: 600 }
     });
+
+//     0 % {
+//         box- shadow: 0 0 0 0rem rgba($ripple - color, 0.2),
+//             0 0 0 1rem rgba($ripple - color, 0.2),
+//                 0 0 0 2rem rgba($ripple - color, 0.2),
+//                     0 0 0 5rem rgba($ripple - color, 0.2);
+// }
+// 100 % {
+//     box- shadow: 0 0 0 1rem rgba($ripple - color, 0.2),
+//         0 0 0 2rem rgba($ripple - color, 0.2),
+//             0 0 0 5rem rgba($ripple - color, 0.2),
+//                 0 0 0 8rem rgba($ripple - color, 0);
+//       }
 
 
     const handleCellClick = () => {
